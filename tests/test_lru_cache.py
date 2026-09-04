@@ -108,6 +108,20 @@ def test_capacity_can_be_changed_via_reset():
     assert len(cache.cache) == 0
 
 
+def test_put_does_not_reset_cache_when_capacity_stays_the_same():
+    cache = LRUCache(5)
+    cache.put("A", 1)
+    cache.put("B", 2)
+
+    cache.put("C", 3)
+
+    assert cache.items() == [
+        {"key": "A", "value": 1},
+        {"key": "B", "value": 2},
+        {"key": "C", "value": 3},
+    ]
+
+
 def test_invalid_capacity_raises_value_error():
     with pytest.raises(ValueError):
         LRUCache(0)

@@ -31,7 +31,8 @@ def set_cache_capacity(capacity: int | None):
     if capacity <= 0:
         raise HTTPException(status_code=400, detail="Capacity must be greater than 0")
 
-    cache = LRUCache(capacity)
+    if capacity != cache.cap:
+        cache = LRUCache(capacity)
 
 
 @app.get("/health")
