@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LRU Cache Visualizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Algorithm Demo</p>
+          <h1>LRU Cache Visualizer</h1>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel controls-panel">
+          <h2>Controls</h2>
+
+          <label for="capacity">Capacity</label>
+          <input id="capacity" type="number" min="1" value="5" />
+
+          <div class="input-row">
+            <div>
+              <label for="key-input">Key</label>
+              <input id="key-input" type="text" placeholder="e.g. user1" />
+            </div>
+            <div>
+              <label for="value-input">Value</label>
+              <input id="value-input" type="text" placeholder="e.g. Ramdas" />
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button id="put-btn" class="primary">PUT</button>
+            <button id="get-btn">GET</button>
+            <button id="reset-btn" class="danger">RESET</button>
+          </div>
+        </section>
+
+        <section class="panel cache-panel">
+          <h2>Cache Order</h2>
+          <div id="cache-list" class="cache-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel stats-panel">
+          <h2>Statistics</h2>
+          <div class="stats-grid">
+            <div>
+              <span>Capacity</span><strong id="stat-capacity">0</strong>
+            </div>
+            <div><span>Size</span><strong id="stat-size">0</strong></div>
+            <div><span>Hits</span><strong id="stat-hits">0</strong></div>
+            <div><span>Misses</span><strong id="stat-misses">0</strong></div>
+            <div>
+              <span>Evictions</span><strong id="stat-evictions">0</strong>
+            </div>
+            <div>
+              <span>Hit rate</span><strong id="stat-hit-rate">0%</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel history-panel">
+          <h2>Operation History</h2>
+          <ul id="history-list" class="history-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
