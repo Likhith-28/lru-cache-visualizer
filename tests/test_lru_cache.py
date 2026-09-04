@@ -97,6 +97,17 @@ def test_capacity_one_works():
     assert cache.evictions == 1
 
 
+def test_capacity_can_be_changed_via_reset():
+    cache = LRUCache(2)
+    cache.put("A", 1)
+    cache.put("B", 2)
+
+    cache = LRUCache(11)
+
+    assert cache.cap == 11
+    assert len(cache.cache) == 0
+
+
 def test_invalid_capacity_raises_value_error():
     with pytest.raises(ValueError):
         LRUCache(0)

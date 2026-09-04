@@ -23,6 +23,17 @@ app.add_middleware(
 cache = LRUCache(5)
 
 
+def set_cache_capacity(capacity: int | None):
+    global cache
+    if capacity is None:
+        return
+
+    if capacity <= 0:
+        raise HTTPException(status_code=400, detail="Capacity must be greater than 0")
+
+    cache = LRUCache(capacity)
+
+
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
@@ -30,6 +41,7 @@ def health_check():
 
 @app.post("/cache/put")
 def put_item(payload: PutRequest):
+    set_cache_capacity(payload.capacity)
     cache.put(payload.key, payload.value)
     return cache.state()
 

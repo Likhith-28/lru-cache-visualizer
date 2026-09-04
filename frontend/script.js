@@ -99,11 +99,12 @@ async function handlePut() {
   }
 
   try {
+    const capacity = Number(capacityInput.value) || 5;
     const state = await apiRequest("/cache/put", {
       method: "POST",
-      body: JSON.stringify({ key, value }),
+      body: JSON.stringify({ key, value, capacity }),
     });
-    addHistory(`PUT ${key} = ${value}`, "info");
+    addHistory(`PUT ${key} = ${value} (cap=${capacity})`, "info");
     renderState(state);
     keyInput.value = "";
     valueInput.value = "";

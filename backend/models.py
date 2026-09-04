@@ -5,6 +5,7 @@ from typing import Any
 class PutRequest(BaseModel):
     key: str
     value: Any
+    capacity: int | None = None
 
 
 class ResetRequest(BaseModel):
